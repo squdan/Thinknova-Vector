@@ -7,6 +7,8 @@
 	},
 	"dependencies": {
 		"express": "4.13.x",
+		"body-parser":"1.9.x",
+		"ejs": "1.0.x",
 		"cfenv": "1.0.x",
 		"solc":"0.3.4",
     "eris-db": "0.15.0",
@@ -14,6 +16,9 @@
 	},
 	"repository": {},
 	"engines": {
-		"node": "4.x"
-	}
+		"node": "4.6.0"
+	},
+	"scripts": {
+	"start": "node app.js"
+  }
 }
