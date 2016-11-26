@@ -44,12 +44,26 @@ module.exports = {
       contractFactory.new.apply(contractFactory, ["Hello World",
        {from: account, data:compiledContract.contracts.greeter.bytecode}, (err, contractInstance)=> {
         console.log(contractInstance.address);
+        //get data from contract
         contractInstance["greet"].apply(contractInstance, [(error,result)=> {
            if (error) {
              console.log(error);
            }
           else {
             console.log(result);
+
+
+            contractInstance2 = contractFactory.at(contractInstance.address);
+            contractInstance2["changeGreet"].apply(contractInstance2, [ "hello hackathon", {from: account}, () => {
+                contractInstance2["greet"].apply(contractInstance2, [(error,result)=> {
+                   if (error) {
+                     console.log(error);
+                   }
+                  else {
+                    console.log(result);
+                }
+            } ])}]);
+
           }
         }]);
 
