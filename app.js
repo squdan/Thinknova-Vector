@@ -39,6 +39,15 @@ var compiledContract = solc.compile(greeterSource);
 var contractFactory = contractManager.newContractFactory(JSON.parse(compiledContract.contracts.Ticket.interface)); //parameter is abi
 console.log("Contract Factory:" + contractFactory)
 
+/* Send the contract */
+var developerAddress = "91706241CA883AED9D1AD8FEB772BC275EB85A0F";
+
+contractFactory.new.apply(contractFactory, [
+ {from: developerAddress, data:compiledContract.contracts.Ticket.bytecode}, (err, contractInstance)=> {
+  console.log(contractInstance.address);
+ }]);
+
+
 // Load the appropriate modules for the app
 var cfenv = require("cfenv");
 var express = require("express");
@@ -89,21 +98,19 @@ app.use(bodyParser.json());
 
 app.post('/clientTicket', function(request, response){
     var adressClient = "7D618EB254AD609814CC231F4EF65438EF666926";
+    var developerAddress = "91706241CA883AED9D1AD8FEB772BC275EB85A0F";
     var identifier = request.body.ticketID;
     var price = request.body.price;
 
-    contractFactory.new.apply(contractFactory, [{from: adressClient, data:compiledContract.contracts.Ticket.bytecode}, (err, contractInstance)=> {
+    contractFactory.new.apply(contractFactory, [{from: developerAddress, data:compiledContract.contracts.Ticket.bytecode}, (err, contractInstance)=> {
       if (err) {
         console.log(err);
       } else {
         contractInstance.acceptTicket(identifier, price, (error, isValid) => {
            if (error) {
              response.render( 'client', {state: "Error!!"} ) ;
-           }
-          else if ( isValid == 1 ) {
+           } else {
             response.render( 'client', {state: "Ticket aceptado!!"} ) ;
-          } else {
-            response.render( 'client', {state: "Ticket no aceptado!!"} ) ;
           }
         })
       }
@@ -112,9 +119,57 @@ app.post('/clientTicket', function(request, response){
 });
 
 app.post('/companyTicket', function(request, response){
-  response.render( 'company', {state: "Ticket aceptado!!"} ) ;
+  var addressCompany = "340872446F6BEF795A568F9A64D6DE70548C3853";
+  var adressClient = "7D618EB254AD609814CC231F4EF65438EF666926";
+  var developerAddress = "91706241CA883AED9D1AD8FEB772BC275EB85A0F";
+
+  var date = request.body.validity;
+  var ticketType = request.body.type;
+  var maxPrice = request.body.amount;
+
+  contractFactory.new.apply(contractFactory, [{from: developerAddress, data:compiledContract.contracts.Ticket.bytecode}, (err, contractInstance)=> {
+    if (err) {
+      console.log(err);
+    } else {
+      contractInstance.allowTicket(date, ticketType, developerAddress, maxPrice, (error,identifier)=> {
+         if (error) {
+           response.render( 'company', {state: "Error!!"} ) ;
+         }
+        else {
+          response.render( 'company', {state: "Ticket con identificador " + identifier} ) ;
+        }
+      })
+    }
+  }]);
+  //response.render( 'company', {state: "Ticket aceptado!!"} ) ;
 });
 
 app.post('/providerTicket', function(request, response){
-  response.render( 'provider', {state: "Ticket aceptado!!"} ) ;
+  var adressProvider = "3D41F8CA67F89D26263E9C3282A026622D0F192A";
+  var addressCompany = "340872446F6BEF795A568F9A64D6DE70548C3853";
+  var adressClient = "7D618EB254AD609814CC231F4EF65438EF666926";
+  var developerAddress = "91706241CA883AED9D1AD8FEB772BC275EB85A0F";
+
+  var date = request.body.fecha;
+  var identifier = request.body.ticketID;
+  var ticketType = request.body.type;
+  var price = request.body.price;
+
+  contractFactory.new.apply(contractFactory, [{from: developerAddress, data:compiledContract.contracts.Ticket.bytecode}, (err, contractInstance)=> {
+    if (err) {
+      console.log(err);
+    } else {
+      contractInstance.generateTicket(date, identifier, 0, price, (error,isValid)=> {
+         if (error) {
+           response.render( 'provider', {state: "Error!!"} ) ;
+         }
+        else if (isValid == 1) {
+          response.render( 'provider', {state: "Ticket emitido!!"} ) ;
+        } else {
+          response.render( 'provider', {state: "Ticket sin permisos!!"} ) ;
+        }
+      })
+    }
+  }]);
+  //response.render( 'provider', {state: "Ticket aceptado!!"} ) ;
 });
