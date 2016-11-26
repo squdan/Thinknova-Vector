@@ -25,10 +25,10 @@ app.listen(appEnv.port);
 // print a message when the server starts listening
 console.log("server starting on " + appEnv.port);
 
-blockChain.init();
+//blockChain.init();
 
 // Home page
 app.get('/', function (req, res) {
-      console.log("Init Page, contract: " + blockChain.getContract());
-      res.render('index', {compiledContract: blockChain.getContract()});
+      //console.log("Init Page, contract: " + blockChain.getContract());
+      //res.render('index', {compiledContract: blockChain.getContract()});
 });
