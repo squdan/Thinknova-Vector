@@ -93,16 +93,20 @@ app.post('/clientTicket', function(request, response){
     var price = request.body.price;
 
     contractFactory.new.apply(contractFactory, [{from: adressClient, data:compiledContract.contracts.Ticket.bytecode}, (err, contractInstance)=> {
-      contractInstance.acceptTicket(identifier, price, (error, isValid) => {
-         if (error) {
-           response.render( 'client', {state: "Error!!"} ) ;
-         }
-        else if ( isValid == 1 ) {
-          response.render( 'client', {state: "Ticket aceptado!!"} ) ;
-        } else {
-          response.render( 'client', {state: "Ticket no aceptado!!"} ) ;
-        }
-      })
+      if (err) {
+        console.log(err);
+      } else {
+        contractInstance.acceptTicket(identifier, price, (error, isValid) => {
+           if (error) {
+             response.render( 'client', {state: "Error!!"} ) ;
+           }
+          else if ( isValid == 1 ) {
+            response.render( 'client', {state: "Ticket aceptado!!"} ) ;
+          } else {
+            response.render( 'client', {state: "Ticket no aceptado!!"} ) ;
+          }
+        })
+      }
     }]);
     //response.render( 'client', {state: "Ticket aceptado!!"} ) ;
 });
