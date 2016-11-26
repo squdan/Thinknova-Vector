@@ -30,3 +30,9 @@ app.listen(appEnv.port);
 console.log("server starting on " + appEnv.port);
 
 blockChain.init();
+
+// Home page
+app.get('/', function (req, res) {
+      console.log("Init Page, contract: " + blockChain.getContract());
+      res.render('index', {compiledContract: blockChain.getContract()});
+});

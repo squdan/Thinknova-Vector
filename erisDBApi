@@ -68,6 +68,10 @@ module.exports = {
         }]);
 
        }]);
+  },
+
+  getContract: function () {
+    return compiledContract = solc.compile(greeterSource);
   }
 
 }
