@@ -67,5 +67,5 @@ console.log("#### Server listening on port " + appEnv.port);
 
 // Home page
 app.get('/', function (req, res) {
-      res.render('index', {compiledContract: compiledContract});
+      res.render('index', {compiledContract: greeterSource});
 });
