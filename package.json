@@ -1,20 +1,21 @@
 {
-	"name": "NodejsStarterApp",
-	"version": "0.0.1",
-	"private": true,
-	"dependencies": {
-		"express": "4.13.x",
-		"body-parser":"1.9.x",
-		"ejs": "1.0.x",
-		"cfenv": "1.0.x",
-		"solc":"0.3.4",
+  "name": "Thinknova",
+  "description": "Sample of Node.JS and Blockchain",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.13.x",
+    "body-parser":"1.9.x",
+    "ejs": "1.0.x",
+	"cfenv": "1.0.x",
+	"solc":"0.3.4",
     "eris-db": "0.15.0",
     "eris-contracts":"0.13.3"
-	},
-	"engines": {
-		"node": "4.6.0"
-	},
-	"scripts": {
+  },
+  "engines": {
+	"node": "4.6.0"
+  },
+  "scripts": {
 	"start": "node app.js"
   }
 }
