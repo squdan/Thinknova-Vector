@@ -1,0 +1,92 @@
+{
+  "GetAccounts": {
+    "rpc_method_name" : "getAccounts"
+  },
+  "GetAccount": {
+    "rpc_method_name": "getAccount"
+  },
+  "GetStorage": {
+    "rpc_method_name": "getStorage"
+  },
+  "GetStorageAt": {
+    "rpc_method_name": "getStorageAt"
+  },
+  "GetBlockchainInfo": {
+    "rpc_method_name": "getBlockchainInfo"
+  },
+  "GetChainId": {
+    "rpc_method_name": "getChainId"
+  },
+  "GetGenesisHash": {
+    "rpc_method_name": "getGenesisHash"
+  },
+  "GetLatestBlockHash": {
+    "rpc_method_name": "getLatestBlockHeight"
+  },
+  "GetLatestBlock": {
+    "rpc_method_name": "getLatestBlock"
+  },
+  "GetBlocks": {
+    "rpc_method_name": "getBlocks"
+  },
+  "GetBlock": {
+    "rpc_method_name": "getBlock"
+  },
+  "GetConsensusState": {
+    "rpc_method_name": "getConsensusState"
+  },
+  "GetValidators": {
+    "rpc_method_name": "getValidators"
+  },
+  "EventSubscribe": {
+    "rpc_method_name": "eventSubscribe"
+  },
+  "EventUnsubscribe": {
+    "rpc_method_name": "eventUnsubscribe"
+  },
+  "EventPoll": {
+    "rpc_method_name": "eventPoll"
+  },
+  "GetNetworkInfo": {
+    "rpc_method_name": "getNetworkInfo"
+  },
+  "GetClientVersion": {
+    "rpc_method_name": "getClientVersion"
+  },
+  "GetMoniker": {
+    "rpc_method_name": "getMoniker"
+  },
+  "IsListening": {
+    "rpc_method_name": "isListening"
+  },
+  "GetListeners": {
+    "rpc_method_name": "getListeners"
+  },
+  "GetPeers": {
+    "rpc_method_name": "getPeers"
+  },
+  "GetPeer": {
+    "rpc_method_name": "getPeer"
+  },
+  "BroadcastTx": {
+    "rpc_method_name": "broadcastTx"
+  },
+  "GetUnconfirmedTxs": {
+    "rpc_method_name": "getUnconfirmedTxs"
+  },
+  "Call": {
+    "rpc_method_name": "call"
+  },
+  "CallCode": {
+    "rpc_method_name": "callCode"
+  },
+  "SignTx": {
+    "rpc_method_name": "signTx"
+  },
+  "Transact": {
+    "rpc_method_name": "transact"
+  },
+  "GenPrivAccount": {
+    "rpc_method_name": "genPrivAccount"
+  }
+}
