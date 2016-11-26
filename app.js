@@ -88,7 +88,7 @@ app.get('/provider', function (req, res) {
 app.use(bodyParser.json());
 
 app.post('/clientTicket', function(request, response){
-    var adressClient = 0x7D618EB254AD609814CC231F4EF65438EF666926;
+    var adressClient = "7D618EB254AD609814CC231F4EF65438EF666926";
     var identifier = request.body.ticketID;
     var price = request.body.price;
 
