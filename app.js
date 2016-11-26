@@ -9,7 +9,7 @@
 var express = require('express');
 var cfenv = require('cfenv');
 var bodyParser = require('body-parser');
-//var blockChain = require('./erisDBApi');
+var blockChain = require('./erisDBApi');
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
