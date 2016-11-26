@@ -36,28 +36,8 @@ erisdb.accounts().getAccounts((err, res) => { console.log(res.accounts.map(item 
 
 /* Compile the Greeter Contract*/
 var compiledContract = solc.compile(greeterSource);
-console.log("Compiled Contract:" + compiledContract)
-var contractFactory = contractManager.newContractFactory(JSON.parse(compiledContract.contracts.greeter.interface)); //parameter is abi
+var contractFactory = contractManager.newContractFactory(JSON.parse(compiledContract.contracts.Ticket.interface)); //parameter is abi
 console.log("Contract Factory:" + contractFactory)
-
-/* Send the contract */
-contractFactory.new.apply(contractFactory, ["Hello World",
- {from: account, data:compiledContract.contracts.greeter.bytecode}, (err, contractInstance)=> {
-  console.log(contractInstance.address);
-  contractInstance["greet"].apply(contractInstance, [(error,result)=> {
-     if (error) {
-       console.log(error);
-     }
-    else {
-      console.log(result);
-    }
-  }]);
-
- }]);
-
-
-
-
 
 // Load the appropriate modules for the app
 var cfenv = require("cfenv");
@@ -86,7 +66,6 @@ app.listen(appEnv.port);
 console.log("#### Server listening on port " + appEnv.port);
 
 // Home page
-app.get('/', function (req, res)
-{
+app.get('/', function (req, res) {
       res.render('index', {compiledContract: compiledContract});
 });
