@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>TicketSolver</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <style type="text/css">
+      img { width: 100%; }
+    </style>
+  </head>
+  <body bgcolor="#364960">
+
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tr>
+        <td width="156"><img src="/images/logo.jpg" width="156" height="61" border="0" alt="IBM Bluemix"></td>
+        <td><img src="/images/background.jpg" height="61" border="0" alt="IBM Bluemix"></td>
+        <td width="156"><img src="/images/TicketSolver.png" width="156" height="61" border="0" alt="IBM Bluemix"></td>
+      </tr>
+    </table>
+
+    <p>
+      <font color="white">User Web APP: <%= JSON.stringify(state, null, '\t') %></font><br><br>
+      <form method="post" action="/clientTicket">
+        <label for="ticketID">Ticket ID:</label>
+        <input type="text" id="ticketID" name="ticketID" placeholder="Enter your ticket id" />
+        <br>
+        <label for="price">Precio:</label>
+        <input type="text" id="price" name="price" placeholder="Enter the price" />
+        <br><br>
+        <input type="submit" value="Create Ticket" />
+      </form>
+    </p>
+  </body>
+<html/>

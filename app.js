@@ -69,3 +69,48 @@ console.log("#### Server listening on port " + appEnv.port);
 app.get('/', function (req, res) {
       res.render('index', {compiledContract: greeterSource});
 });
+
+app.get('/company', function (req, res) {
+   res.render( 'company', {state: ""} ) ;
+});
+
+app.get('/client', function (req, res) {
+  res.render( 'client', {state: ""} ) ;
+});
+
+app.get('/provider', function (req, res) {
+   res.render( 'provider', {state: ""} ) ;
+});
+
+/**bodyParser.json(options)
+ * Parses the text as JSON and exposes the resulting object on req.body.
+ */
+app.use(bodyParser.json());
+
+app.post('/clientTicket', function(request, response){
+    var adressClient = 0x7D618EB254AD609814CC231F4EF65438EF666926;
+    var identifier = request.body.ticketID;
+    var price = request.body.price;
+
+    contractFactory.new.apply(contractFactory, [{from: adressClient, data:compiledContract.contracts.Ticket.bytecode}, (err, contractInstance)=> {
+      contractInstance.acceptTicket(identifier, price, (error, isValid) => {
+         if (error) {
+           response.render( 'client', {state: "Error!!"} ) ;
+         }
+        else if ( isValid == 1 ) {
+          response.render( 'client', {state: "Ticket aceptado!!"} ) ;
+        } else {
+          response.render( 'client', {state: "Ticket no aceptado!!"} ) ;
+        }
+      })
+    }]);
+    //response.render( 'client', {state: "Ticket aceptado!!"} ) ;
+});
+
+app.post('/companyTicket', function(request, response){
+  response.render( 'company', {state: "Ticket aceptado!!"} ) ;
+});
+
+app.post('/providerTicket', function(request, response){
+  response.render( 'provider', {state: "Ticket aceptado!!"} ) ;
+});
