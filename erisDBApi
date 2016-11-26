@@ -1,3 +1,5 @@
+/*eslint-env node*/
+
 const erisDbFactory = require('eris-db');
 const erisContracts = require('eris-contracts');
 const solc = require('solc');
@@ -71,7 +73,7 @@ module.exports = {
   },
 
   getContract: function () {
-    return compiledContract = solc.compile(greeterSource);
+    return compiledContract = "{hola}";//solc.compile(greeterSource);
   }
 
 }
